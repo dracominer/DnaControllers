@@ -6,6 +6,9 @@ import dna.controllers.DNALoadControllers;
 import dna.controllers.DPadDir;
 import dna.controllers.XBoxPad;
 
+/**
+ * this is a main testing class for showing that the system works. I will change it from time to time to test different features.
+ * */
 @SuppressWarnings("serial")
 public class Test extends JFrame implements Runnable {
 

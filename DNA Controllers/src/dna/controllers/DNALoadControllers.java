@@ -12,17 +12,37 @@ import net.java.games.input.ControllerEnvironment;
  * */
 public class DNALoadControllers {
 
-	public static List<XBoxPad> getAllAvailableXboxControllers() {
-		Controller[] controllers = ControllerEnvironment.getDefaultEnvironment().getControllers();
-		List<XBoxPad> gamepads = new ArrayList<XBoxPad>();
-		for (int i = 0; i < controllers.length; i++) {
-			Controller c = controllers[i];
+	/**
+	 * finds all active controllers that are of the defined type. This can find keybaords, mice, gamepads, and even joysticks or head trackers.
+	 * */
+	public static List<Controller> getAllControllersOfType(net.java.games.input.Controller.Type type) {
+		List<Controller> controllers = new ArrayList<Controller>();
+		Controller[] list = ControllerEnvironment.getDefaultEnvironment().getControllers();
+		for (int i = 0; i < list.length; i++) {
+			Controller c = list[i];
 			if (c == null) {
 				continue;
 			}
-			if (c.getType().equals(net.java.games.input.Controller.Type.GAMEPAD)) {
-				if (c.getName().toLowerCase().indexOf("xbox") != -1) gamepads.add(new XBoxPad(c));
+			if (c.getType().equals(type)) {
+				controllers.add(c);
 			}
+		}
+		return controllers;
+	}
+
+	/**
+	 * returns all active controllers that are marked as a gamepad
+	 * */
+	public static List<Controller> getAllGamePads() {
+		return getAllControllersOfType(net.java.games.input.Controller.Type.GAMEPAD);
+	}
+
+	public static List<XBoxPad> getAllAvailableXboxControllers() {
+		List<Controller> controllers = getAllGamePads();
+		List<XBoxPad> gamepads = new ArrayList<XBoxPad>();
+		for (int i = 0; i < controllers.size(); i++) {
+			Controller c = controllers.get(i);
+			if (c.getName().toLowerCase().indexOf("xbox") != -1) gamepads.add(new XBoxPad(c));
 		}
 		return gamepads;
 	}
