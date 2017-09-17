@@ -48,8 +48,6 @@ public class TestGeneral extends JFrame implements Runnable {
 
 	protected void setUpController() {
 		gamepad = new DNAAbstractController(DNALoadControllers.getAllGamePads().get(0), true);
-		if (gamepad != null) print("Using gamepad: " + gamepad.getName());
-		// gamepad.printControllerData();
 	}
 
 	protected void runTest() {
@@ -58,7 +56,7 @@ public class TestGeneral extends JFrame implements Runnable {
 			if (gamepad.getButton(i)) print("Btn_" + i + " is pressed");
 		}
 		for (int i = 0; i < gamepad.getRegisteredAxes(); i++) {
-			if (Math.abs(gamepad.getAxis(i)) > 0.25f) print("Axis_" + i + " is in use");
+			if (Math.abs(gamepad.getAxis(i)) > 0.25f) print("Axis_" + i + " is in use [" + gamepad.getAxis(i) + "]");
 		}
 		DPadDir dir = gamepad.getDPadDir(XBoxPad.BTN_DPad);
 		if (!dir.equals(DPadDir.None)) {

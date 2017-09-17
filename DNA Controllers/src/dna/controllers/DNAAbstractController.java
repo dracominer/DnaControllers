@@ -18,6 +18,7 @@ public class DNAAbstractController {
 	protected Component[] analogs;
 	protected Component[] digitals;
 	protected Rumbler[] rumblers;
+	protected float[] rumbleIntensities;
 
 	public DNAAbstractController(Controller c, boolean printComponent) {
 		controller = c;
@@ -40,6 +41,7 @@ public class DNAAbstractController {
 		for (int i = 0; i < digitals.length; i++) {
 			digitals[i] = d.get(i);
 		}
+		rumbleIntensities = new float[rumblers.length];
 		printData();
 	}
 
@@ -73,6 +75,21 @@ public class DNAAbstractController {
 		return digitals[id].getPollData();
 	}
 
+	public void rumble(int id, float intensity) {
+		if (id < 0 || id >= rumblers.length) return;
+		rumbleIntensities[id] = intensity;
+		rumblers[id].rumble(intensity);
+	}
+
+	public float getRumbleIntensity(int id) {
+		if (id < 0 || id >= rumblers.length) return 0.0f;
+		return rumbleIntensities[id];
+	}
+
+	public boolean isRumbling(int id) {
+		return getRumbleIntensity(id) > 0.0f;
+	}
+
 	public float getButtonRaw(int id) {
 		return getDigital(id);
 	}
@@ -87,7 +104,7 @@ public class DNAAbstractController {
 
 	public DPadDir getDPadDir(int id) {
 		float v = getButtonRaw(id);
-		if (v < 0.0f) return DPadDir.None;
+		if (v <= 0.0f) return DPadDir.None;
 		if (v <= 0.125f) return DPadDir.W;
 		if (v <= 0.25f) return DPadDir.NW;
 		if (v <= 0.375f) return DPadDir.N;
@@ -107,8 +124,13 @@ public class DNAAbstractController {
 		for (Component c : digitals) {
 			System.out.println("\t" + c.getName() + "(Analog) : " + c.getIdentifier().getName() + " (" + c.getPollData() + ")");
 		}
-		for (Rumbler c : rumblers) {
-			System.out.println("\t" + c.getAxisName() + "(Rumbler) : " + c.getAxisIdentifier().getName());
+		for (int i = 0; i < rumblers.length; i++) {
+
+			if (rumblers[i] == null) {
+				System.out.println("Null Rumbler!!!");
+				continue;
+			}
+			System.out.println("\t" + rumblers[i].getAxisName() + "(Rumbler) : (" + getRumbleIntensity(i));
 		}
 
 	}
