@@ -8,8 +8,9 @@ import dna.controllers.DPadDir;
 import dna.controllers.XBoxPad;
 
 /**
- * this is a main testing class for showing that the system works. I will change it from time to time to test different features.
- * */
+ * this is a main testing class for showing that the system works. I will change
+ * it from time to time to test different features.
+ */
 @SuppressWarnings("serial")
 public class TestGeneral extends JFrame implements Runnable {
 
@@ -46,9 +47,9 @@ public class TestGeneral extends JFrame implements Runnable {
 	}
 
 	protected void setUpController() {
-		gamepad = DNALoadControllers.loadOneXboxController();
+		gamepad = new DNAAbstractController(DNALoadControllers.getAllGamePads().get(0), true);
 		if (gamepad != null) print("Using gamepad: " + gamepad.getName());
-		gamepad.printControllerData();
+		// gamepad.printControllerData();
 	}
 
 	protected void runTest() {
