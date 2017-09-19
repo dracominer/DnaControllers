@@ -128,7 +128,7 @@ public class DNAController {
 			System.out.println("\t" + c.getName() + "(Analog) : " + c.getIdentifier().getName() + " (" + c.getPollData() + ")");
 		}
 		for (Component c : digitals) {
-			System.out.println("\t" + c.getName() + "(Analog) : " + c.getIdentifier().getName() + " (" + c.getPollData() + ")");
+			System.out.println("\t" + c.getName() + "(Digital) : " + c.getIdentifier().getName() + " (" + c.getPollData() + ")");
 		}
 		for (int i = 0; i < rumblers.length; i++) {
 
