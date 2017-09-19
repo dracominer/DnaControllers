@@ -48,7 +48,7 @@ public class DNAController {
 			digitals[i] = d.get(i);
 		}
 		rumbleIntensities = new float[rumblers.length];
-		printData();
+		if (printComponent) printData();
 	}
 
 	public DNAController(Controller c) {
