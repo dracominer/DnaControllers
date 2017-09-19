@@ -2,7 +2,7 @@ package dna;
 
 import javax.swing.JFrame;
 
-import dna.controllers.DNAAbstractController;
+import dna.controllers.DNAController;
 import dna.controllers.DNALoadControllers;
 import dna.controllers.DPadDir;
 import dna.controllers.XBoxPad;
@@ -19,7 +19,7 @@ public class TestGeneral extends JFrame implements Runnable {
 		new TestGeneral().start();
 	}
 
-	protected DNAAbstractController gamepad;
+	protected DNAController gamepad;
 
 	public TestGeneral() {
 		super("Gamepad test");
@@ -47,7 +47,7 @@ public class TestGeneral extends JFrame implements Runnable {
 	}
 
 	protected void setUpController() {
-		gamepad = new DNAAbstractController(DNALoadControllers.getAllGamePads().get(0), true);
+		gamepad = DNALoadControllers.getDNAController();
 	}
 
 	protected void runTest() {

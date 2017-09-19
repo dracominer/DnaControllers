@@ -5,7 +5,7 @@ import net.java.games.input.Controller;
 /**
  * after this class is initialized, it can handle all input from an xbox gamepad
  * */
-public class XBoxPad extends DNAAbstractController {
+public class XBoxPad extends DNAController {
 
 	public static final int BTN_A = 0;
 	public static final int BTN_B = 1;

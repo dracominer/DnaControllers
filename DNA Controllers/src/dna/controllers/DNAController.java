@@ -11,7 +11,13 @@ import net.java.games.input.Controller.Type;
 import net.java.games.input.EventQueue;
 import net.java.games.input.Rumbler;
 
-public class DNAAbstractController {
+/**
+ * this class is the main abstraction point for JInput controllers.
+ * It has ease of access methods and stores appropriate variables.
+ * Any child classes will provide further abstraction such as the 
+ * XBox pad class which has a method for checking if the X button is pressed.
+ * */
+public class DNAController {
 
 	protected Controller controller;
 
@@ -20,7 +26,7 @@ public class DNAAbstractController {
 	protected Rumbler[] rumblers;
 	protected float[] rumbleIntensities;
 
-	public DNAAbstractController(Controller c, boolean printComponent) {
+	public DNAController(Controller c, boolean printComponent) {
 		controller = c;
 		rumblers = controller.getRumblers();
 		List<Component> a = new ArrayList<Component>();
@@ -45,7 +51,7 @@ public class DNAAbstractController {
 		printData();
 	}
 
-	public DNAAbstractController(Controller c) {
+	public DNAController(Controller c) {
 		this(c, false);
 	}
 

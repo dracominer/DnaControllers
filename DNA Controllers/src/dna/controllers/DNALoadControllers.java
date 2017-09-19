@@ -37,6 +37,12 @@ public class DNALoadControllers {
 		return getAllControllersOfType(net.java.games.input.Controller.Type.GAMEPAD);
 	}
 
+	public static DNAController getDNAController() {
+		List<Controller> pads = getAllGamePads();
+		if (pads.isEmpty()) return null;
+		return new DNAController(pads.get(0));
+	}
+
 	public static List<XBoxPad> getAllAvailableXboxControllers() {
 		List<Controller> controllers = getAllGamePads();
 		List<XBoxPad> gamepads = new ArrayList<XBoxPad>();
