@@ -12,6 +12,23 @@ import net.java.games.input.ControllerEnvironment;
  * */
 public class DNALoadControllers {
 
+	static {
+		loadDLL("jinput-dx8_64.dll");
+		loadDLL("jinput-dx8.dll");
+		loadDLL("jinput-raw_64.dll");
+		loadDLL("jinput-raw.dll");
+		loadDLL("jinput-wintab.dll");
+		loadDLL("libjinput-linux.so");
+		loadDLL("libjinput-linux64.so");
+		loadDLL("libjinput-osx.so");
+	}
+
+	private static void loadDLL(String name) {
+		try {
+			System.load(name);
+		} catch (Exception e) {}
+	}
+
 	/**
 	 * finds all active controllers that are of the defined type. This can find keybaords, mice, gamepads, and even joysticks or head trackers.
 	 * */
